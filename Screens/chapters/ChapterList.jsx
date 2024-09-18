@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, StatusBar, Button } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ViewChapter from './ViewChapter';
+
+const Stack = createStackNavigator();
+
+
 
 // Dummy data for learning modules
 const modules = [
@@ -10,25 +16,29 @@ const modules = [
   { id: 5, title: 'APIs and Data Fetching', description: 'Fetch and display data from APIs.' },
 ];
 
-export default function ChapterList() {
+export default function ChapterList({navigation}) {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       
       {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Learning App</Text>
-      </View>
-
       {/* Module List */}
       <ScrollView contentContainerStyle={styles.moduleList}>
         {modules.map((module) => (
-          <TouchableOpacity key={module.id} style={styles.moduleCard}>
+          <TouchableOpacity key={module.id} style={styles.moduleCard} onPress={()=> {
+            navigation.navigate('view');
+          }}>
             <Text style={styles.moduleTitle}>{module.title}</Text>
             <Text style={styles.moduleDescription}>{module.description}</Text>
           </TouchableOpacity>
+          
         ))}
       </ScrollView>
+      {/* <View style={{flex:1}}>
+            <Stack.Navigator >
+                <Stack.Screen name="detail" component={ViewChapter} />
+            </Stack.Navigator>
+        </View> */}
     </View>
   );
 }
