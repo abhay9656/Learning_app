@@ -10,7 +10,7 @@ const modules = [
   { id: 5, title: 'APIs and Data Fetching', description: 'Fetch and display data from APIs.' },
 ];
 
-export default function Chapter() {
+export default function ChapterList() {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
