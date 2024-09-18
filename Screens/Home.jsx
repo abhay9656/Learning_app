@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* <View style={styles.header}>
@@ -13,7 +13,9 @@ const Home = () => {
       </View> */}
 
       <View style={styles.grid}>
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity style={styles.card} onPress={()=>{
+            navigation.navigate('chapter');
+        }}>
           <Image
             style={styles.icon}
             source={require('../assets/javaScript.png')} // Ensure this path is correct

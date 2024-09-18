@@ -4,6 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from '../Screens/Home';
 import { Avatar } from 'react-native-paper';
+import Chapter from '../Screens/chapters';
 
 function HomeScreen({ navigation }) {
   return (
@@ -30,8 +31,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Learning App" component={Home} options={{headerRight: () => <Avatar.Text size={30} label="AB" />}} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        <Drawer.Screen name="home" component={Home} options={{headerRight: () => <Avatar.Text size={30} label="AB" />}} />
+        <Drawer.Screen name="chapter" component={Chapter} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
