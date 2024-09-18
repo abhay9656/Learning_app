@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Avatar } from 'react-native-paper';
 
 const Home = () => {
     return (
@@ -10,12 +11,9 @@ const Home = () => {
               <Text style={styles.menuText}>☰</Text>
             </TouchableOpacity>
             <Text style={styles.title}>Learing</Text>
-            <Image
-              style={styles.profileIcon}
-              source={{ uri: 'https://via.placeholder.com/40' }} // Placeholder for profile icon
-            />
+            <Avatar.Text size={30} label="AB" />
           </View>
-          <Text style={styles.lastUpdate}>Last Update 25 Feb 2020</Text>
+
     
           <View style={styles.grid}>
             <TouchableOpacity style={styles.card}>
