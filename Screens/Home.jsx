@@ -21,48 +21,10 @@ const Home = () => {
                 style={styles.icon}
                 source={{ uri: 'https://via.placeholder.com/50' }} // Replace with your icon
               />
-              <Text style={styles.cardText}>My Account</Text>
+              <Text style={styles.cardText}>JavaScript</Text>
             </TouchableOpacity>
     
-            <TouchableOpacity style={styles.card}>
-              <Image
-                style={styles.icon}
-                source={{ uri: 'https://via.placeholder.com/50' }} // Replace with your icon
-              />
-              <Text style={styles.cardText}>Inventory</Text>
-            </TouchableOpacity>
-    
-            <TouchableOpacity style={styles.card}>
-              <Image
-                style={styles.icon}
-                source={{ uri: 'https://via.placeholder.com/50' }} // Replace with your icon
-              />
-              <Text style={styles.cardText}>Search Mechanic</Text>
-            </TouchableOpacity>
-    
-            <TouchableOpacity style={styles.card}>
-              <Image
-                style={styles.icon}
-                source={{ uri: 'https://via.placeholder.com/50' }} // Replace with your icon
-              />
-              <Text style={styles.cardText}>Request</Text>
-            </TouchableOpacity>
-    
-            <TouchableOpacity style={styles.card}>
-              <Image
-                style={styles.icon}
-                source={{ uri: 'https://via.placeholder.com/50' }} // Replace with your icon
-              />
-              <Text style={styles.cardText}>Analytics</Text>
-            </TouchableOpacity>
-    
-            <TouchableOpacity style={styles.card}>
-              <Image
-                style={styles.icon}
-                source={{ uri: 'https://via.placeholder.com/50' }} // Replace with your icon
-              />
-              <Text style={styles.cardText}>Contact Us</Text>
-            </TouchableOpacity>
+           
           </View>
         </View>
       );
@@ -96,17 +58,8 @@ const Home = () => {
         color: '#000',
         textAlign: 'center',
       },
-      profileIcon: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-      },
-      lastUpdate: {
-        marginVertical: 20,
-        color: '#888',
-        fontSize: 14,
-        textAlign: 'center',
-      },
+     
+    
       grid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -123,11 +76,6 @@ const Home = () => {
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 5,
-      },
-      icon: {
-        width: 50,
-        height: 50,
-        marginBottom: 10,
       },
       cardText: {
         fontSize: 16,
