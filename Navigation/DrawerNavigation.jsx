@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import Home from '../Screens/Home';
+import { Avatar } from 'react-native-paper';
 
 function HomeScreen({ navigation }) {
   return (
@@ -28,7 +30,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Learning App" component={Home} options={{headerRight: () => <Avatar.Text size={30} label="AB" />}} />
         <Drawer.Screen name="Notifications" component={NotificationsScreen} />
       </Drawer.Navigator>
     </NavigationContainer>

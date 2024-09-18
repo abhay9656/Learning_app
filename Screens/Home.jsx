@@ -1,17 +1,16 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Avatar } from 'react-native-paper';
 
 const Home = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <TouchableOpacity style={styles.menuIcon}>
           <Text style={styles.menuText}>☰</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Learning App</Text>
-        <Avatar.Text size={30} label="AB" />
-      </View>
+        
+      </View> */}
 
       <View style={styles.grid}>
         <TouchableOpacity style={styles.card}>
