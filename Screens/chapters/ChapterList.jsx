@@ -13,13 +13,13 @@ const Stack = createStackNavigator();
 
 
 // Dummy data for learning modules
-const modules = [
-  { id: 1, title: 'Introduction to React Native', description: 'Learn the basics of React Native.' },
-  { id: 2, title: 'React Native Components', description: 'Understand how to create and style components.' },
-  { id: 3, title: 'React Native Navigation', description: 'Learn how to navigate between screens.' },
-  { id: 4, title: 'State and Props', description: 'Deep dive into state and props in React Native.' },
-  { id: 5, title: 'APIs and Data Fetching', description: 'Fetch and display data from APIs.' },
-];
+// const modules = [
+//   { id: 1, title: 'Introduction to React Native', description: 'Learn the basics of React Native.' },
+//   { id: 2, title: 'React Native Components', description: 'Understand how to create and style components.' },
+//   { id: 3, title: 'React Native Navigation', description: 'Learn how to navigate between screens.' },
+//   { id: 4, title: 'State and Props', description: 'Deep dive into state and props in React Native.' },
+//   { id: 5, title: 'APIs and Data Fetching', description: 'Fetch and display data from APIs.' },
+// ];
 
 export default function ChapterList({navigation}) {
 
@@ -52,7 +52,7 @@ export default function ChapterList({navigation}) {
       <ScrollView contentContainerStyle={styles.moduleList}>
         {chapterList.map((module) => (
           <TouchableOpacity key={module.id} style={styles.moduleCard} onPress={()=> {
-            navigation.navigate('view');
+            navigation.navigate('view', {chapterData: module});
           }}>
             <Text style={styles.moduleTitle}>{module.title}</Text>
             <Text style={styles.moduleDescription}>{module.description}</Text>
