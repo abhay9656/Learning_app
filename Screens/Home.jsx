@@ -13,6 +13,7 @@ const Home = ({ navigation }) => {
       </View> */}
 
       <View style={styles.grid}>
+          {/* <Text></Text> */}
         <TouchableOpacity style={styles.card} onPress={()=>{
             navigation.navigate('chapter');
         }}>
