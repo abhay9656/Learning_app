@@ -7,12 +7,12 @@ const WelcomeScreen = ({ visible, setVisible }) => {
         <Modal visible={visible} onRequestClose={() => setVisible(false)}>
             <View style={styles.container}>
                 {/* Back Arrow */}
-                <Icon onPress={() => setVisible(false)} name="arrow-back" size={24} color="purple" style={styles.backIcon} />
+                <Icon  name="arrow-back" size={24} color="purple" style={styles.backIcon} />
 
                 {/* Illustration */}
                 <View style={styles.imageContainer}>
                     <Image
-                        source={require('../assets/learnpng')} // Add your illustration image here
+                        source={require('../assets/learn.png')} // Add your illustration image here
                         style={styles.image}
                         resizeMode="contain"
                     />
@@ -28,7 +28,7 @@ const WelcomeScreen = ({ visible, setVisible }) => {
 
                 {/* Start Learning Button */}
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Start Learning</Text>
+                    <Text onPress={() => setVisible(false)} style={styles.buttonText}>Start Learning</Text>
                 </TouchableOpacity>
             </View>
         </Modal>
