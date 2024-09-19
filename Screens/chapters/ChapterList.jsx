@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, StatusBar, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ViewChapter from './ViewChapter';
+import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import app from '../../FirebaseConfigure';
+
+const db = getFirestore(app);
 
 const Stack = createStackNavigator();
 
@@ -17,6 +22,27 @@ const modules = [
 ];
 
 export default function ChapterList({navigation}) {
+
+  const [chapterList, setChapterList] = useState([])
+  const [Refreshing, setRefreshing] = useState(true)
+
+
+  const loadChapter = async ()=>{
+     const ref = collection(db,'chapters');
+     setRefreshing(true)
+     const snapshot = await getDocs(ref);
+     const data = snapshot.docs.map(doc => {
+      return { ...doc.data(), id: doc.id }
+    }).sort((a, b) => a.title.localeCompare(b.title) );
+    console.log(data);
+    setChapterList(data)
+    setRefreshing(false)
+  }
+
+  useEffect(()=>{
+    loadChapter()
+  },[])
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -24,7 +50,7 @@ export default function ChapterList({navigation}) {
       {/* Header */}
       {/* Module List */}
       <ScrollView contentContainerStyle={styles.moduleList}>
-        {modules.map((module) => (
+        {chapterList.map((module) => (
           <TouchableOpacity key={module.id} style={styles.moduleCard} onPress={()=> {
             navigation.navigate('view');
           }}>
