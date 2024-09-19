@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from '../Screens/Home';
 import { Avatar } from 'react-native-paper';
 import Chapter from '../Screens/chapters';
+import WelcomeScreen from '../Screens/welcomeScreen';
 
 function HomeScreen({ navigation }) {
   return (
@@ -28,8 +29,10 @@ function NotificationsScreen({ navigation }) {
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+  const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(true);
   return (
     <NavigationContainer>
+      <WelcomeScreen visible={showWelcomeScreen} setVisible={setShowWelcomeScreen} />
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="home" component={Home} options={{headerRight: () => <Avatar.Text size={30} label="AB" />}} />
         <Drawer.Screen name="chapter" component={Chapter} />
