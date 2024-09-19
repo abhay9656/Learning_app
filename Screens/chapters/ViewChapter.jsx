@@ -1,7 +1,16 @@
 import React from 'react';
 import { View, Text, Image, Button, StyleSheet, ScrollView } from 'react-native';
+import app from '../firebaseConfig';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+
+const db = getFirestore(app);
 
 const SimplePage = () => {
+
+  const [ViewChapter, setViewChapter] = useState([])
+  const [Refreshing, setRefreshing] = useState(true)
+
     return (
         <View style={styles.container}>
             {/* Header Section */}
