@@ -1,13 +1,34 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, Button, StyleSheet, ScrollView } from 'react-native';
-import Video from 'react-native-video';
+import { View, Text, Image, Button, StyleSheet, ScrollView, useRef, useState } from 'react-native';
+// import { useVideoPlayer, VideoView } from 'expo-video';
+// import Video from 'react-native-video';
+// import { useVideoPlayer, VideoView } from 'expo-video';
+// import { useEffect, useRef, useState } from 'react';
+// import { PixelRatio, StyleSheet, View, Button } from 'react-native';
 
-
-
+const videoSource =
+    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
 const SimplePage = ({ route, navigation }) => {
 
     const { chapterData } = route.params;
+
+    // const ref = useRef(null);
+    // const [isPlaying, setIsPlaying] = useState(true);
+    // const player = useVideoPlayer(videoSource, player => {
+    //     player.loop = true;
+    //     player.play();
+    // });
+
+    // useEffect(() => {
+    //     const subscription = player.addListener('playingChange', isPlaying => {
+    //         setIsPlaying(isPlaying);
+    //     });
+
+    //     return () => {
+    //         subscription.remove();
+    //     };
+    // }, [player]);
 
     return (
         <View style={styles.container}>
@@ -15,12 +36,28 @@ const SimplePage = ({ route, navigation }) => {
             <View style={styles.header}>
                 <Text style={styles.headerText}>{chapterData.title}</Text>
             </View>
-            <Video
-                source={{ uri: '"https://firebasestorage.googleapis.com/v0/b/learning-react-native-ebe34.appspot.com/o/chapters%2Fanimated_medium20210407-4113-pfmdng.mp4?alt=media&token=96c7ff91-0291-45a1-9c1e-686ff41b7514"' }} // Can be a local or remote URL
-                style={styles.video}
-                controls={true} // Show media controls
-                resizeMode="contain" // Adjust the video to fit the view
-            />
+            {/* <View style={styles.contentContainer}>
+                <VideoView
+                    ref={ref}
+                    style={styles.video}
+                    player={player}
+                    allowsFullscreen
+                    allowsPictureInPicture
+                />
+                <View style={styles.controlsContainer}>
+                    <Button
+                        title={isPlaying ? 'Pause' : 'Play'}
+                        onPress={() => {
+                            if (isPlaying) {
+                                player.pause();
+                            } else {
+                                player.play();
+                            }
+                            setIsPlaying(!isPlaying);
+                        }}
+                    />
+                </View>
+            </View> */}
             {/* Profile Picture Section */}
             <View style={styles.profileContainer}>
                 <Image

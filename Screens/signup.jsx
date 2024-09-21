@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 const Signup = ({navigation}) => {
     const [name, setName] = useState('');
@@ -23,16 +23,16 @@ const Signup = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Icon name='home' size={30} color={'#fff'} style={{margin:10,top:30,left:20,}}
+            <Icon name='home' size={30} color={'#fff'} style={{margin:10,left:20,}}
             onPress={()=>navigation.navigate('Home')}
             />
             <View style={styles.logoContainer}>
-                {/* <Image resizeMode='contain' style={styles.icon} source={require('../assets/Login1.webp')} /> */}
+                <Image resizeMode='contain' style={styles.icon} source={require('../assets/signup.png')} />
             </View>
             <View style={styles.loginCard}>
             <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.title}>Sign Up</Text>
-
+    
+             
             {/* Name Input */}
             <TextInput
                 style={styles.input}
@@ -95,12 +95,11 @@ const Signup = ({navigation}) => {
 };
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 30, backgroundColor: "blue",
+        paddingTop: 30, 
         flex: 1
     },
     logoContainer: {
         flex: 1,
-
         justifyContent: "center",
         alignItems: "center",
     },
@@ -114,7 +113,6 @@ const styles = StyleSheet.create({
     icon: {
         height: 200,
         width: "100%",
-
     },
     input: {
         backgroundColor: "#eee",
@@ -122,6 +120,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         fontSize: 16,
         borderRadius: 20,
+        marginBottom: 10,
     },
     formdField: {
         marginBottom: 20,
@@ -153,6 +152,17 @@ const styles = StyleSheet.create({
        justifyContent:'space-evenly',
        marginBottom:10
    },
+   
+    buttonText: {
+        color: '#F7EED3',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    loginContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 20,
+    },
    icon1:{
        backgroundColor:'#eee',
        padding:10,
@@ -164,7 +174,15 @@ const styles = StyleSheet.create({
        marginTop:10,
        fontSize:15,
        fontWeight:'bold'
-   }
+   },
+   button: {
+    backgroundColor: '#AAB396',
+    width: '100%',
+    padding: 15,
+    borderRadius: 25,
+    alignItems: 'center',
+    marginVertical: 10,
+},
 });
 
 export default Signup
