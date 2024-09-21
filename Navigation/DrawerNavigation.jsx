@@ -36,7 +36,7 @@ export default function App() {
     <NavigationContainer>
       <WelcomeScreen visible={showWelcomeScreen} setVisible={setShowWelcomeScreen} />
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="home" component={Home} options={{headerRight: () => <Avatar.Text size={30} label="AB" />}} />
+        <Drawer.Screen name="Home" component={Home} options={{headerRight: () => <Avatar.Text size={30} label="AB" />}} />
         <Drawer.Screen name="chapter" component={Chapter} />
         <Drawer.Screen name="Login" component={login} />
         <Drawer.Screen name="Signup" component={signup} />

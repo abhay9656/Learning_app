@@ -32,7 +32,6 @@ const Signup = ({navigation}) => {
             <View style={styles.loginCard}>
             <ScrollView contentContainerStyle={styles.container}>
     
-             
             {/* Name Input */}
             <TextInput
                 style={styles.input}
@@ -113,6 +112,7 @@ const styles = StyleSheet.create({
     icon: {
         height: 200,
         width: "100%",
+        top: -30
     },
     input: {
         backgroundColor: "#eee",
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
        fontWeight:'bold'
    },
    button: {
-    backgroundColor: '#AAB396',
+    backgroundColor: 'blue',
     width: '100%',
     padding: 15,
     borderRadius: 25,
