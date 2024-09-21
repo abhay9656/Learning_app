@@ -31,7 +31,7 @@ function NotificationsScreen({ navigation }) {
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(true);
+  const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(false);
   return (
     <NavigationContainer>
       <WelcomeScreen visible={showWelcomeScreen} setVisible={setShowWelcomeScreen} />

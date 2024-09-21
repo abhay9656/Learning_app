@@ -15,12 +15,12 @@ const SimplePage = ({ route, navigation }) => {
             <View style={styles.header}>
                 <Text style={styles.headerText}>{chapterData.title}</Text>
             </View>
-            {/* <Video
+            <Video
                 source={{ uri: '"https://firebasestorage.googleapis.com/v0/b/learning-react-native-ebe34.appspot.com/o/chapters%2Fanimated_medium20210407-4113-pfmdng.mp4?alt=media&token=96c7ff91-0291-45a1-9c1e-686ff41b7514"' }} // Can be a local or remote URL
                 style={styles.video}
                 controls={true} // Show media controls
                 resizeMode="contain" // Adjust the video to fit the view
-            /> */}
+            />
             {/* Profile Picture Section */}
             <View style={styles.profileContainer}>
                 <Image
