@@ -7,6 +7,7 @@ import { Avatar } from 'react-native-paper';
 import Chapter from '../Screens/chapters';
 import WelcomeScreen from '../Screens/welcomeScreen';
 import login from '../Screens/login';
+import signup from '../Screens/signup';
 
 function HomeScreen({ navigation }) {
   return (
@@ -38,6 +39,7 @@ export default function App() {
         <Drawer.Screen name="home" component={Home} options={{headerRight: () => <Avatar.Text size={30} label="AB" />}} />
         <Drawer.Screen name="chapter" component={Chapter} />
         <Drawer.Screen name="Login" component={login} />
+        <Drawer.Screen name="Signup" component={signup} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
