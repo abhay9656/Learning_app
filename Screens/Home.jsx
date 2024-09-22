@@ -11,6 +11,14 @@ const Home = ({ navigation }) => {
         <Text style={styles.title}>Learning App</Text>
         
       </View> */}
+      <View style={styles.card2}>
+        {/* <Text style={{textAlign:'center',color:'#fff',fontSize:24,flex:1,alignItems:'center'}}>Welcome Back!</Text> */}
+        <Image
+                    source={require('../assets/bg.jpg')} // Replace with your own image
+                 style={{width:'100%',height:'100%',borderRadius:15}}
+                    
+                />
+      </View>
 
       <View style={styles.grid}>
           {/* <Text></Text> */}
@@ -72,6 +80,19 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
+    shadowRadius: 5,
+  },
+  card2:{
+    width: '100%',
+    height:'30%',
+    backgroundColor: '#2F4DFA',
+    borderRadius: 15,
+    padding: 20,
+    marginBottom: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
     shadowRadius: 5,
   },
   cardText: {
