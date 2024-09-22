@@ -74,6 +74,7 @@ const SimplePage = ({ route, navigation }) => {
                 </Text>
                 <Text style={styles.text}>{chapterData.type}</Text>
                 <Text style={styles.contentText}>{chapterData.data}</Text>
+                <Text style={styles.contentText}>{chapterData.example}</Text>
 
             </ScrollView>
 
