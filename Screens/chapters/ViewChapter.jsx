@@ -72,6 +72,8 @@ const SimplePage = ({ route, navigation }) => {
                 <Text style={styles.contentText}>
                     {chapterData.overview}
                 </Text>
+                <Text style={styles.text}>{chapterData.type}</Text>
+                <Text style={styles.contentText}>{chapterData.data}</Text>
 
             </ScrollView>
 
@@ -123,13 +125,11 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         marginBottom: 10,
     },
-    footer: {
-        padding: 10,
-        backgroundColor: '#f5f5f5',
-        borderTopWidth: 1,
-        borderColor: '#ddd',
-        alignItems: 'center',
-    },
+   text:{
+    fontWeight:'bold',
+    fontSize:18,
+    marginBottom:10,
+   }
 });
 
 export default SimplePage;

@@ -24,7 +24,7 @@ const Signup = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Icon name='home' size={30} color={'#fff'} style={{margin:10,left:20,}}
-            onPress={()=>navigation.navigate('Home')}
+            onPress={()=>navigation.navigate('Home')} 
             />
             <View style={styles.logoContainer}>
                 <Image resizeMode='contain' style={styles.icon} source={require('../assets/signup.png')} />
