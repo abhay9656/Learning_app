@@ -1,34 +1,12 @@
-import React, { useEffect } from 'react';
-import { View, Text, Image, Button, StyleSheet, ScrollView, useRef, useState } from 'react-native';
-// import { useVideoPlayer, VideoView } from 'expo-video';
-// import Video from 'react-native-video';
-// import { useVideoPlayer, VideoView } from 'expo-video';
-// import { useEffect, useRef, useState } from 'react';
-// import { PixelRatio, StyleSheet, View, Button } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
+import { Video } from 'expo-av';
 
-const videoSource =
-    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
-
-const SimplePage = ({ route, navigation }) => {
-
+const SimplePage = ({ route }) => {
     const { chapterData } = route.params;
 
-    // const ref = useRef(null);
-    // const [isPlaying, setIsPlaying] = useState(true);
-    // const player = useVideoPlayer(videoSource, player => {
-    //     player.loop = true;
-    //     player.play();
-    // });
-
-    // useEffect(() => {
-    //     const subscription = player.addListener('playingChange', isPlaying => {
-    //         setIsPlaying(isPlaying);
-    //     });
-
-    //     return () => {
-    //         subscription.remove();
-    //     };
-    // }, [player]);
+    const video = useRef(null);
+    const [status, setStatus] = useState({});
 
     return (
         <View style={styles.container}>
@@ -36,50 +14,37 @@ const SimplePage = ({ route, navigation }) => {
             <View style={styles.header}>
                 <Text style={styles.headerText}>{chapterData.title}</Text>
             </View>
-            {/* <View style={styles.contentContainer}>
-                <VideoView
-                    ref={ref}
+
+            {/* Video Section */}
+            <View style={styles.contentContainer}>
+                <Video
+                    ref={video}
                     style={styles.video}
-                    player={player}
-                    allowsFullscreen
-                    allowsPictureInPicture
+                    source={{ uri: chapterData.video }} // Pass the video URL here
+                    useNativeControls
+                    resizeMode="contain"
+                    isLooping
+                    onPlaybackStatusUpdate={status => setStatus(() => status)}
                 />
-                <View style={styles.controlsContainer}>
-                    <Button
-                        title={isPlaying ? 'Pause' : 'Play'}
-                        onPress={() => {
-                            if (isPlaying) {
-                                player.pause();
-                            } else {
-                                player.play();
-                            }
-                            setIsPlaying(!isPlaying);
-                        }}
-                    />
-                </View>
-            </View> */}
+            </View>
+
             {/* Profile Picture Section */}
-            <View style={styles.profileContainer}>
+            {/* <View style={styles.profileContainer}>
                 <Image
                     style={styles.profileImage}
                     source={{ uri: 'https://placekitten.com/200/200' }} // Placeholder image
                 />
                 <Text style={styles.profileName}>{chapterData.description}</Text>
-            </View>
+            </View> */}
 
             {/* Content Section */}
             <ScrollView style={styles.contentContainer}>
-                <Text style={styles.contentText}>
-                    {chapterData.overview}
-                </Text>
+                <Text style={styles.text}>{chapterData.description}</Text>
+                <Text style={styles.contentText}>{chapterData.overview}</Text>
                 <Text style={styles.text}>{chapterData.type}</Text>
                 <Text style={styles.contentText}>{chapterData.data}</Text>
                 <Text style={styles.contentText}>{chapterData.example}</Text>
-
             </ScrollView>
-
-            {/* Footer with Button */}
-
         </View>
     );
 };
@@ -101,36 +66,28 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         fontWeight: 'bold',
-
     },
-    profileContainer: {
-        alignItems: 'center',
-        marginBottom: 20,
-    },
-    profileImage: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        marginBottom: 10,
-    },
-    profileName: {
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
+   
     contentContainer: {
         flex: 1,
-        marginVertical: 10,
+        
+    },
+    video: {
+        width: '100%',
+        height: 200,
+       
     },
     contentText: {
         fontSize: 16,
         lineHeight: 22,
         marginBottom: 10,
     },
-   text:{
-    fontWeight:'bold',
-    fontSize:18,
-    marginBottom:10,
-   }
+    text: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginBottom: 10,
+        textAlign: 'center',
+    },
 });
 
 export default SimplePage;
