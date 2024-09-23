@@ -6,7 +6,10 @@ import { Controller, useForm } from 'react-hook-form';
 
 const auth = getAuth(app);
 
-const LoginScreen = () => {
+
+
+
+const LoginScreen = ({navigation}) => {
     const {
         control,
         handleSubmit,
@@ -95,7 +98,7 @@ const LoginScreen = () => {
                 {/* Password Input */}
 
                 {/* Login Button */}
-                <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
 
@@ -107,7 +110,7 @@ const LoginScreen = () => {
                 {/* Register */}
                 <View style={styles.registerContainer}>
                     <Text>Don't have an account?</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
                         <Text style={styles.registerText}> Register</Text>
                     </TouchableOpacity>
                 </View>

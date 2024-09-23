@@ -44,9 +44,9 @@ const Signup = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Icon name='home' size={30} color={'#000'} style={{ margin: 10, left: 20, }}
-                onPress={() => navigation.navigate('home')}
-            />
+            {/* <Icon name='home' size={30} color={'#000'} style={{ margin: 10, left: 20, }}
+               onPress={() => navigation.navigate('Home')}
+            /> */}
             <View style={styles.logoContainer}>
                 <Image resizeMode='contain' style={styles.icon} source={require('../assets/signup.png')} />
             </View>
@@ -149,7 +149,7 @@ const Signup = ({ navigation }) => {
                     {/* Already have an account */}
                     <View style={styles.loginContainer}>
                         <Text>Already have an account?</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
                             <Text style={styles.loginText}> Log In</Text>
                         </TouchableOpacity>
                     </View>
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     loginCard: {
-        flex: 3,
+        flex: 2,
         backgroundColor: "white",
         padding: 40,
         borderTopLeftRadius: 40,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     icon: {
         height: 200,
         width: "100%",
-        top: -30
+      
     },
     input: {
         backgroundColor: "#eee",
