@@ -2,99 +2,164 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-const Signup = ({navigation}) => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+import { Controller, useForm } from 'react-hook-form';
+import app from '../FirebaseConfigure';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
-    const handleSignup = () => {
-        // Handle signup logic here
-        if (password !== confirmPassword) {
-            console.log('Passwords do not match');
-        } else {
-            console.log('Name: ', name);
-            console.log('Email: ', email);
-            console.log('Password: ', password);
-        }
+
+const auth = getAuth(app);
+
+const Signup = ({ navigation }) => {
+
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        defaultValues: {
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+        },
+    });
+
+
+    const onSubmit = (data) => {
+        // alert(JSON.stringify(data)); 
+
+        createUserWithEmailAndPassword(auth, data.email, data.password)
+            .then((result) => {
+                const { user } = result;
+                console.log(user);
+                alert('User created successfully');
+            }).catch((err) => {
+                console.log(err);
+                alert(err.message);
+            });
     };
-     
+
+
 
 
     return (
         <View style={styles.container}>
-            <Icon name='home' size={30} color={'#fff'} style={{margin:10,left:20,}}
-            onPress={()=>navigation.navigate('Home')} 
+            <Icon name='home' size={30} color={'#000'} style={{ margin: 10, left: 20, }}
+                onPress={() => navigation.navigate('home')}
             />
             <View style={styles.logoContainer}>
                 <Image resizeMode='contain' style={styles.icon} source={require('../assets/signup.png')} />
             </View>
+
             <View style={styles.loginCard}>
-            <ScrollView contentContainerStyle={styles.container}>
-    
-            {/* Name Input */}
-            <TextInput
-                style={styles.input}
-                placeholder="Name"
-                placeholderTextColor="#aaa"
-                value={name}
-                onChangeText={setName}
-                autoCapitalize="words"
-            />
+                <ScrollView contentContainerStyle={styles.container}>
 
-            {/* Email Input */}
-            <TextInput
-                style={styles.input}
-                placeholder="Email"
-                placeholderTextColor="#aaa"
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-            />
+                    <Controller
+                        control={control}
+                        rules={{
+                            required: { message: 'Name is required', value: true },
+                        }}
+                        render={({ field }) => {
+                            return (
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Name"
+                                    placeholderTextColor="#aaa"
+                                    onChangeText={field.onChange}
+                                    value={field.value}
+                                    autoCapitalize="words"
+                                    label={'Name'}
+                                    error={errors.name}
+                                />
+                            )
+                        }}
+                        name='name'
+                    />
+                    <Controller
+                        control={control}
+                        rules={{
+                            required: { message: 'Email is required', value: true },
+                        }}
+                        render={({ field }) => {
+                            return (
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Email Address"
+                                    placeholderTextColor="#aaa"
+                                    onChangeText={field.onChange}
+                                    value={field.value}
+                                    autoCapitalize="words"
+                                    label={'Email'}
+                                    error={errors.email}
+                                />
+                            )
+                        }}
+                        name='email'
+                    />
+                    <Controller
+                        control={control}
+                        rules={{
+                            required: { message: 'Password is required', value: true },
+                        }}
+                        render={({ field }) => {
+                            return (
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Password"
+                                    placeholderTextColor="#aaa"
+                                    onChangeText={field.onChange}
+                                    value={field.value}
+                                    autoCapitalize="words"
+                                    label={'Password'}
+                                    error={errors.password}
+                                />
+                            )
+                        }}
+                        name='password'
+                    />
+                    <Controller
+                        control={control}
+                        rules={{
+                            required: { message: 'Confirm Password is required', value: true },
+                        }}
+                        render={({ field }) => {
+                            return (
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Confirm Password"
+                                    placeholderTextColor="#aaa"
+                                    onChangeText={field.onChange}
+                                    value={field.value}
+                                    autoCapitalize="words"
+                                    label={'Confirm Password'}
+                                    error={errors.confirmPassword}
+                                />
+                            )
+                        }}
+                        name='confirmPassword'
+                    />
 
-            {/* Password Input */}
-            <TextInput
-                style={styles.input}
-                placeholder="Password"
-                placeholderTextColor="#aaa"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-                autoCapitalize="none"
-            />
 
-            {/* Confirm Password Input */}
-            <TextInput
-                style={styles.input}
-                placeholder="Confirm Password"
-                placeholderTextColor="#aaa"
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
-                secureTextEntry
-                autoCapitalize="none"
-            />
+                    {/* Sign-Up Button */}
+                    <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+                        <Text style={styles.buttonText}>Sign Up</Text>
+                    </TouchableOpacity>
 
-            {/* Sign-Up Button */}
-            <TouchableOpacity style={styles.button} onPress={handleSignup}>
-                <Text style={styles.buttonText}>Sign Up</Text>
-            </TouchableOpacity>
-
-            {/* Already have an account */}
-            <View style={styles.loginContainer}>
-                <Text>Already have an account?</Text>
-                <TouchableOpacity>
-                    <Text style={styles.loginText}> Log In</Text>
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+                    {/* Already have an account */}
+                    <View style={styles.loginContainer}>
+                        <Text>Already have an account?</Text>
+                        <TouchableOpacity>
+                            <Text style={styles.loginText}> Log In</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
             </View>
         </View>
     )
 };
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 30, 
+        paddingTop: 30,
         flex: 1
     },
     logoContainer: {
@@ -130,29 +195,29 @@ const styles = StyleSheet.create({
         marginBottom: 4,
         marginLeft: 15
     },
-    link1:{
-        marginLeft:'auto',
-        colo:'#555',
-        marginBottom:10,
-        marginTop:10
+    link1: {
+        marginLeft: 'auto',
+        colo: '#555',
+        marginBottom: 10,
+        marginTop: 10
     },
-    submitBtn:{
-        backgroundColor:'#ffca3c',
-        padding:15,
-        borderRadius:10,
+    submitBtn: {
+        backgroundColor: '#ffca3c',
+        padding: 15,
+        borderRadius: 10,
 
     },
-    btnText:{
-        textAlign:'center',
-        fontSize:18,
-        fontWeight:'bold'
+    btnText: {
+        textAlign: 'center',
+        fontSize: 18,
+        fontWeight: 'bold'
     },
-   iconContainer:{
-       flexDirection:'row',
-       justifyContent:'space-evenly',
-       marginBottom:10
-   },
-   
+    iconContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginBottom: 10
+    },
+
     buttonText: {
         color: '#F7EED3',
         fontSize: 18,
@@ -163,26 +228,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 20,
     },
-   icon1:{
-       backgroundColor:'#eee',
-       padding:10,
-       borderRadius:50
-   },
-   link2:{
-       textAlign:'center',
-       color:'#555',
-       marginTop:10,
-       fontSize:15,
-       fontWeight:'bold'
-   },
-   button: {
-    backgroundColor: 'blue',
-    width: '100%',
-    padding: 15,
-    borderRadius: 25,
-    alignItems: 'center',
-    marginVertical: 10,
-},
+    icon1: {
+        backgroundColor: '#eee',
+        padding: 10,
+        borderRadius: 50
+    },
+    link2: {
+        textAlign: 'center',
+        color: '#555',
+        marginTop: 10,
+        fontSize: 15,
+        fontWeight: 'bold'
+    },
+    button: {
+        backgroundColor: 'blue',
+        width: '100%',
+        padding: 15,
+        borderRadius: 25,
+        alignItems: 'center',
+        marginVertical: 10,
+    },
 });
 
 export default Signup
