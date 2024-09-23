@@ -31,12 +31,12 @@ function NotificationsScreen({ navigation }) {
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(false);
+  const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(true);
   return (
     <NavigationContainer>
       <WelcomeScreen visible={showWelcomeScreen} setVisible={setShowWelcomeScreen} />
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={Home} options={{headerRight: () => <Avatar.Text size={30} label="AB" />}} />
+        <Drawer.Screen name="Home" component={Home} options={{headerRight: () => <Avatar.Text size={30} style={{marginRight:10}} label="AB" />}} />
         <Drawer.Screen name="chapter" component={Chapter} />
         <Drawer.Screen name="Login" component={login} />
         <Drawer.Screen name="Signup" component={signup} />
