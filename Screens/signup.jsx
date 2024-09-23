@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, TextInput,  KeyboardAvoidingView, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { Controller, useForm } from 'react-hook-form';
 import app from '../FirebaseConfigure';
@@ -52,7 +52,7 @@ const Signup = ({ navigation }) => {
             </View>
 
             <View style={styles.loginCard}>
-                <ScrollView contentContainerStyle={styles.container}>
+                <KeyboardAvoidingView contentContainerStyle={styles.container}>
 
                     <Controller
                         control={control}
@@ -96,6 +96,7 @@ const Signup = ({ navigation }) => {
                         }}
                         name='email'
                     />
+                    
                     <Controller
                         control={control}
                         rules={{
@@ -152,7 +153,7 @@ const Signup = ({ navigation }) => {
                             <Text style={styles.loginText}> Log In</Text>
                         </TouchableOpacity>
                     </View>
-                </ScrollView>
+                </KeyboardAvoidingView>
             </View>
         </View>
     )

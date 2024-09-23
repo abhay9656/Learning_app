@@ -1,14 +1,35 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import app from '../FirebaseConfigure';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { Controller, useForm } from 'react-hook-form';
+
+const auth = getAuth(app);
 
 const LoginScreen = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        defaultValues: {
+            email: "",
+            password: ""
+        },
+    });
 
-    const handleLogin = () => {
-        // Handle login logic here
-        console.log('Email: ', email);
-        console.log('Password: ', password);
+    const onSubmit = (data) => {
+        // alert(JSON.stringify(data)); 
+
+        signInWithEmailAndPassword(auth, data.email, data.password)
+            .then((result) => {
+                const { user } = result;
+                console.log(user);
+                alert('Logged in successfully');
+            }).catch((err) => {
+                console.log(err);
+                alert(err.message);
+            });
     };
 
     return (
@@ -26,27 +47,52 @@ const LoginScreen = () => {
             <View style={styles.inputSection}>
                 <Text style={styles.title}>Login</Text>
 
-                {/* Email Input */}
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    placeholderTextColor="#aaa"
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                />
 
-                {/* Password Input */}
-                <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    placeholderTextColor="#aaa"
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                    autoCapitalize="none"
+                <Controller
+                    control={control}
+                    rules={{
+                        required: { message: 'Email is required', value: true }
+                    }}
+                    render={({ field }) => {
+                        return (
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Email"
+                                placeholderTextColor="#aaa"
+                                value={field.value}
+                                onChangeText={field.onChange}
+                                label={"Email Address"}
+                                error={errors.email}
+                            />
+                        )
+                    }}
+                    name='email'
                 />
+                <Text>{errors.email?.message}</Text>
+                {/* Email Input */}
+
+                <Controller
+                    control={control}
+                    rules={{
+                        required: { message: 'Password is required', value: true }
+                    }}
+                    render={({ field }) => {
+                        return (
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Password"
+                                placeholderTextColor="#aaa"
+                                value={field.value}
+                                onChangeText={field.onChange}
+                                label={"Password"}
+                                error={errors.password}
+                            />
+                        )
+                    }}
+                    name='password'
+                />
+                <Text>{errors.password?.message}</Text>
+                {/* Password Input */}
 
                 {/* Login Button */}
                 <TouchableOpacity style={styles.button} onPress={handleLogin}>
