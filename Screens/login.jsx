@@ -29,6 +29,7 @@ const LoginScreen = ({navigation}) => {
                 const { user } = result;
                 console.log(user);
                 alert('Logged in successfully');
+                navigation.navigate('Home');
             }).catch((err) => {
                 console.log(err);
                 alert(err.message);
