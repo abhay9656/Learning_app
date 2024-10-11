@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import app from '../FirebaseConfigure';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, set, useForm } from 'react-hook-form';
 
 const auth = getAuth(app);
 
@@ -29,6 +29,7 @@ const {setuserloggedin,userloggedin} = route.params;
                 const { user } = result;
                 console.log(user);
                 alert('Logged in successfully');
+                setuserloggedin(true);
                 reset();  // Reset form inputs after successful login
                 navigation.navigate('Home');
             }).catch((err) => {
