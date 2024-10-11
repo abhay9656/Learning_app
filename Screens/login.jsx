@@ -6,9 +6,10 @@ import { Controller, useForm } from 'react-hook-form';
 
 const auth = getAuth(app);
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({navigation,route}) => {
 
-    const [userloggedin, setuserloggedin] = useState(true)
+const {setuserloggedin,userloggedin} = route.params;
+
 
     const {
         control,

@@ -163,6 +163,10 @@ const styles = StyleSheet.create({
         paddingTop: 30,
         flex: 1
     },
+    loginText:{
+        color: '#6c49da',
+        fontWeight: 'bold'
+    },
     logoContainer: {
         flex: 1,
         justifyContent: "center",

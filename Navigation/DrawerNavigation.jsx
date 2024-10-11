@@ -40,7 +40,7 @@ const Navigator = () => {
     <Drawer.Screen name="Home" component={Home} options={{
       headerRight: () => !userlogedin ? <IconButton
         icon={'account-circle'}
-        onPress={() => { navigation.navigate('Login'); }} />
+        onPress={() => { navigation.navigate('Login',{setuserlogedin,userlogedin}) }} />
         :
         <IconButton
           icon={'logout'}
