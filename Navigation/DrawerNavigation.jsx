@@ -56,7 +56,7 @@ export default function App() {
 
   const [signupOpen, setSignupOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
-  const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(false);
+  const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(true);
   
 
 

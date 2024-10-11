@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const WelcomeScreen = ({ visible, setVisible }) => {
     return (
-        <Modal visible={visible} onRequestClose={() => setVisible(true)}>
+        <Modal visible={visible} onRequestClose={() => setVisible(false)}>
             <View style={styles.container}>
                 {/* Back Arrow */}
                 <Icon  name="arrow-back" size={24} color="purple" style={styles.backIcon} />

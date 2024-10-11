@@ -14,7 +14,7 @@ const Home = ({ navigation }) => {
       <View style={styles.card2}>
         {/* <Text style={{textAlign:'center',color:'#fff',fontSize:24,flex:1,alignItems:'center'}}>Welcome Back!</Text> */}
         <Image
-                    source={require('../assets/bg.jpg')} // Replace with your own image
+                    source={require('../assets/bg.jpg')} 
                  style={{width:'100%',height:'100%',borderRadius:15}}
                     
                 />
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   card: {
-    width: '48%',
+    width: '100%',
     backgroundColor: '#fff',
     borderRadius: 15,
     padding: 20,
@@ -79,8 +79,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
+    shadowOpacity: 0.8,
+    shadowRadius: 6,
+    shadowColor: '#000',
+    elevation: 5,
   },
   card2:{
     width: '100%',
