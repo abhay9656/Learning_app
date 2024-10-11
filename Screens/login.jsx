@@ -6,21 +6,14 @@ import { Controller, useForm } from 'react-hook-form';
 
 const auth = getAuth(app);
 
-
-
-
 const LoginScreen = ({navigation}) => {
 
-    const [text, Settext] =useState('')
- 
-    const reset = () => {
-        Settext('')
-    }
-
+    const [userloggedin, setuserloggedin] = useState(true)
 
     const {
         control,
         handleSubmit,
+        reset,  // use reset to clear form inputs
         formState: { errors },
     } = useForm({
         defaultValues: {
@@ -30,18 +23,18 @@ const LoginScreen = ({navigation}) => {
     });
 
     const onSubmit = (data) => {
-        // alert(JSON.stringify(data)); 
-
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then((result) => {
                 const { user } = result;
                 console.log(user);
                 alert('Logged in successfully');
+                reset();  // Reset form inputs after successful login
                 navigation.navigate('Home');
             }).catch((err) => {
                 console.log(err);
                 alert(err.message);
             });
+            
     };
 
     return (
@@ -59,52 +52,46 @@ const LoginScreen = ({navigation}) => {
             <View style={styles.inputSection}>
                 <Text style={styles.title}>Login</Text>
 
-
+                {/* Email Input */}
                 <Controller
                     control={control}
                     rules={{
                         required: { message: 'Email is required', value: true }
                     }}
-                    render={({ field }) => {
-                        return (
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Email"
-                                placeholderTextColor="#aaa"
-                                value={field.value}
-                                onChangeText={field.onChange}
-                                label={"Email Address"}
-                                error={errors.email}
-                            />
-                        )
-                    }}
-                    name='email'
+                    render={({ field }) => (
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Email"
+                            placeholderTextColor="#aaa"
+                            value={field.value}
+                            onChangeText={field.onChange}
+                            error={errors.email}
+                        />
+                    )}
+                    name="email"
                 />
                 <Text>{errors.email?.message}</Text>
-                {/* Email Input */}
 
+                {/* Password Input */}
                 <Controller
                     control={control}
                     rules={{
                         required: { message: 'Password is required', value: true }
                     }}
-                    render={({ field }) => {
-                        return (
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Password"
-                                placeholderTextColor="#aaa"
-                                value={field.value}
-                                onChangeText={field.onChange}
-                                label={"Password"}
-                                error={errors.password}
-                            />
-                        )
-                    }}
-                    name='password'
+                    render={({ field }) => (
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Password"
+                            placeholderTextColor="#aaa"
+                            value={field.value}
+                            onChangeText={field.onChange}
+                            secureTextEntry={true}
+                            error={errors.password}
+                        />
+                    )}
+                    name="password"
                 />
                 <Text>{errors.password?.message}</Text>
-                {/* Password Input */}
 
                 {/* Login Button */}
                 <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
@@ -119,7 +106,7 @@ const LoginScreen = ({navigation}) => {
                 {/* Register */}
                 <View style={styles.registerContainer}>
                     <Text>Don't have an account?</Text>
-                    <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                         <Text style={styles.registerText}> Register</Text>
                     </TouchableOpacity>
                 </View>
@@ -137,7 +124,6 @@ const styles = StyleSheet.create({
         flex: 2,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff', // Change the background color as needed
     },
     image: {
         width: '80%',
@@ -146,13 +132,9 @@ const styles = StyleSheet.create({
     inputSection: {
         flex: 3,
         padding: 20,
-        backgroundColor: '#ffff', // Change the background color as needed
+        backgroundColor: '#ffff',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        // shadowColor: '#000',
-        // shadowOffset: { width: 0, height: 2 },
-        // shadowOpacity: 0.25,
-        // shadowRadius: 3.84,
         elevation: 5,
     },
     title: {
