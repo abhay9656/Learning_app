@@ -50,6 +50,8 @@ const Navigator = () => {
     <Drawer.Screen name="Login" component={login} />
     <Drawer.Screen name="Signup" component={signup} />
   </Drawer.Navigator>
+
+
 }
 
 export default function App() {
@@ -57,30 +59,16 @@ export default function App() {
   const [signupOpen, setSignupOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(true);
-  
+ 
+  // const openLogin = () => {
+  //   setLoginOpen(true);
+  //   setSignupOpen(false);
+  // }
 
-
-
-  React.useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setuserlogedin(true);
-      } else {
-        setuserlogedin(false);
-      }
-    });
-  }, [])
-
-
-  const openLogin = () => {
-    setLoginOpen(true);
-    setSignupOpen(false);
-  }
-
-  const openSignup = () => {
-    setSignupOpen(true);
-    setLoginOpen(false);
-  }
+  // const openSignup = () => {
+  //   setSignupOpen(true);
+  //   setLoginOpen(false);
+  // }
   return (
     <NavigationContainer>
       <WelcomeScreen visible={showWelcomeScreen} setVisible={setShowWelcomeScreen} />

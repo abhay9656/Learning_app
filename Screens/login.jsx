@@ -10,6 +10,14 @@ const auth = getAuth(app);
 
 
 const LoginScreen = ({navigation}) => {
+
+    const [text, Settext] =useState('')
+ 
+    const reset = () => {
+        Settext('')
+    }
+
+
     const {
         control,
         handleSubmit,
